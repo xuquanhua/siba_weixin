@@ -1,0 +1,46 @@
+.login{
+    background-color:#fff;
+}
+.login .title{
+    background-color:#fed943;
+    font-weight:bold;
+}
+.icon-left:before{
+    font-weight:bold;
+    color:#000;
+}
+.login .item-input{
+    height:2rem;
+}
+.login .input-box{
+    padding-top:1rem;
+}
+.login .item-input input{
+    height:2rem;
+    display: block;
+    margin: 1rem auto auto;
+    width:80%;
+    text-indent:1rem;
+    border:1px solid #ccc;
+}
+.login .content-block{
+    padding:0;
+}
+.login .btn-box{
+    width:80%;
+    margin-left:10%;
+}
+.login .btn-box a{
+    background-color:#fed943;
+    color:#000;
+    font-weight: bold;
+}
+.login .list-block ul:after{
+    display: none;
+}
+.login .list-block ul:before{
+    display: none;
+}
+.login .list-block .item-link{
+    color:#bfbfbf;
+}
