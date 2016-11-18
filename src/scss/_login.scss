@@ -1,0 +1,146 @@
+@mixin transform($deg) {
+    -webkit-transform: $deg;
+    -moz-transform: $deg;
+    transform: $deg;
+}
+
+.title {
+    background-color: $color-orange;
+    font-weight: bold;
+}
+
+.radio {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding-left: 50px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: relative;
+}
+
+.radio-checked {
+    background-color: $color-orange;
+    border: none;
+}
+
+.radio-checked:before {
+    content: "";
+    position: absolute;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    width: 23px;
+    height: 12px;
+    @include transform(rotate(-45deg));
+    left: 13px;
+    top: 14px;
+
+}
+
+.radio-input {
+    display: none;
+}
+
+.login {
+    background-color: #fff;
+    .item-input {
+        height: 2rem;
+        input {
+            height: 2rem;
+            display: block;
+            margin: 1rem auto auto;
+            width: 80%;
+            text-indent: 1rem;
+            border: 1px solid #ccc;
+        }
+    }
+    .input-box {
+        padding-top: 1rem;
+    }
+    .content-block {
+        padding: 0;
+    }
+    .btn-box {
+        width: 80%;
+        margin-left: 10%;
+        a {
+            background-color: $color-orange;
+            color: #000;
+            font-weight: bold;
+        }
+    }
+    .list-block ul:after {
+        display: none;
+    }
+    .list-block ul:before {
+        display: none;
+    }
+    .list-block .item-link {
+        color: #bfbfbf;
+    }
+}
+
+.icon-left:before {
+    font-weight: bold;
+    color: #000;
+}
+
+.register {
+    background-color: #fff;
+    .banner {
+        width: 100%;
+        height: 503px;
+        background: url("../images/register.jpg") left top no-repeat;
+    }
+    .item-input {
+        height: 2rem;
+        input {
+            height: 2rem;
+            display: block;
+            margin: 1rem auto auto;
+            width: 80%;
+            text-indent: 1rem;
+            border: 1px solid #ccc;
+        }
+    }
+    .input-btn-box {
+        width: 80%;
+        margin: 30px auto auto;
+        overflow: hidden;
+        .btn-box {
+            float: right;
+            width: 50%;
+            .button-success.button-fill {
+                background-color: $color-orange;
+                color: #1a1a1a;
+            }
+        }
+        .input-box {
+            width: 50%;
+            float: left;
+            input {
+                margin: auto;
+                text-indent: 1rem;
+                border: 1px solid #ccc;
+                height: 2rem;
+            }
+        }
+    }
+    .content-block {
+        width: 80%;
+        margin: 50px auto auto;
+        .button {
+            background-color: $color-orange;
+            color: #1c1d1f;
+        }
+    }
+    .phone-login {
+        width: 50%;
+        margin: 150px auto auto;
+        .button {
+            background-color: $color-orange;
+            color: #1c1d1f;
+        }
+    }
+
+}

@@ -1,0 +1,47 @@
+@charset "utf-8";
+$default-font-size: 20;
+
+/* 去除单位 */
+@function strip-units($number){
+  @return $number / ($number * 0 + 1);
+}
+/* px转rem */
+@mixin remCalc($property, $values...) {
+  $remValues: "";
+ @each $value in $values {
+    @if $value ==0 or type_of($value)!= number {
+      $remValues: #{$remValues+" "+$value};
+    } @else {
+      $value:strip-units($value);
+      $remValues: #{$remValues + " "+ $value / $default-font-size / 2}rem;
+    }
+  }
+  #{$property}: $remValues;
+}
+/* 固定px */
+@mixin fixPx($property, $values...) {
+  $remValues: "";
+    @each $value in $values {
+          @if $value ==0 or type_of($value)!= number {
+            $remValues: #{$remValues+" "+$value};
+          } @else {
+            $value:strip-units($value);
+            $remValues: #{$remValues + " "+ $value /2}px;
+          }
+        }
+
+  #{$property}: $remValues;
+}
+/* icon字号转换 */
+@mixin iconFontSize($property, $values...) {
+  $remValues: "";
+  @each $value in $values {
+    @if $value ==0 or type_of($value)!= number {
+      $remValues: #{$remValues+" "+$value};
+    } @else {
+      $value:strip-units($value);
+      $remValues: #{$remValues + " "+ $value / $default-font-size / 2}rem;
+    }
+  }
+  #{$property}: $remValues;
+}

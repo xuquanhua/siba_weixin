@@ -1,0 +1,793 @@
+@charset "utf-8";
+
+/*reset*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+html * {
+    outline: 0;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+    font-family: Helvetica Neue, Roboto, sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+li {
+    list-style: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    -webkit-user-select: none;
+    overflow-x: hidden;
+}
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    outline: none;
+    /*设置的tap  A标签的时候出现的黑色高亮*/
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+a:active {
+    outline: 0;
+}
+
+input,
+textarea {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: '';
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+em {
+    font-style: normal;
+}
+
+input {
+    outline: none;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="search"] {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #999;
+}
+
+textarea {
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+
+/* 去除iphone ipad 设备默认按钮样式 */
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="number"],
+input[type="text"],
+input[type="search"] {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #ccc;
+}
+
+input::-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #ccc;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    z-index: 999;
+    opacity: 0;
+    filter: Alpha(opacity=0);
+}
+
+
+/*reset*/
+
+body {
+    background-color: $background;
+}
+
+.hide {
+    display: none !important;
+}
+
+.tool-bar-footer {
+    height: 50px;
+    @extend %box-sizing;
+}
+
+.disabled {
+    background-color: #ebebf0 !important;
+    color: #d2d2d2 !important;
+}
+
+.disabled-text {
+    color: #ccc !important;
+}
+
+.request {
+    color: #ff3333;
+}
+
+%layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    filter: alpha(opacity=56);
+    opacity: 0.56;
+    background: #000;
+}
+
+.layer {
+    @extend %layer;
+}
+
+#layer {
+    @extend %layer;
+}
+
+.layer-opcity {
+    @extend %layer;
+    background: transparent !important;
+}
+
+%dialog-success {
+    > i {
+        position: absolute;
+        @include remCalc(top, 38);
+        left: 0;
+        right: 0;
+        @include remCalc(font-size, 64);
+    }
+    visibility: hidden;
+    @include remCalc(width, 152);
+    background: rgba(0, 0, 0, 0.8);
+    line-height: 1.5;
+    @include remCalc(border-radius, 12);
+    @include remCalc(padding, 114, 26, 42, 26);
+    @include remCalc(font-size, 28);
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    z-index: 99999;
+}
+
+%dialog-warn {
+    @extend %dialog-success;
+    > i {
+        // @extend .icon-ico_warning;
+    }
+}
+
+%dialog-confirm {
+    visibility: hidden;
+    @include remCalc(width, 540px);
+    @include remCalc(font-size, 34px);
+    line-height: 1.5;
+    position: fixed;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    text-align: center;
+    overflow: hidden;
+    .confirm-content {
+        text-align: left;
+        word-break: break-all;
+        word-wrap: break-word;
+        @include remCalc(border-top-left-radius, 20px);
+        @include remCalc(border-top-right-radius, 20px);
+        @include remCalc(padding, 40, 50);
+        @extend %box-sizing;
+        border-bottom: solid 1px #aaaeb1;
+        background-color: rgba(255, 255, 255, 0.9);
+        @include remCalc(font-size, 28px);
+        position: relative;
+        .confirm-title {
+            text-align: center;
+            display: block;
+            font-weight: bold;
+            @extend %box-sizing;
+            color: #333;
+            @include remCalc(font-size, 34px);
+        }
+    }
+    .confirm-operate {
+        width: 100%;
+        > span {
+            display: inline-block;
+            @include remCalc(padding, 10, 0);
+            width: 50%;
+            @extend %box-sizing;
+            color: #007aff;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .confirm-cancel {
+            @include remCalc(border-bottom-left-radius, 20px);
+        }
+        .confirm-sure {
+            @extend %box-sizing;
+            box-sizing: border-box;
+            border-left: solid 1px #aaaeb1;
+            @include remCalc(border-bottom-right-radius, 20px);
+        }
+        .confirm-sure2 {
+            @include remCalc(border-bottom-left-radius, 20px);
+            @include remCalc(border-bottom-right-radius, 20px);
+            @extend .confirm-sure;
+            width: 100%;
+            border-left: none;
+        }
+    }
+}
+
+.dialog-warn-icon {
+    @extend %dialog-warn;
+}
+
+.dialog-warn {
+    @extend %dialog-warn;
+    @include remCalc(padding, 26);
+    width: auto;
+    i {
+        display: none;
+    }
+}
+
+.dialog-success {
+    @extend %dialog-success;
+}
+
+.dialog-confirm {
+    @extend %dialog-confirm;
+    &.custom {
+        width: 80%;
+        .promotion {
+            width: 100%;
+        }
+        .confirm-content {
+            background: #fff;
+            padding: 0;
+            text-align: left;
+        }
+        .confirm-title {
+            display: none;
+        }
+        .confirm-operate {
+            span {
+                background: #fff;
+            }
+        }
+    }
+}
+
+.text-error {
+    color: red !important;
+    a {
+        color: red !important;
+    }
+    input {
+        color: red !important;
+    }
+}
+
+%box-sizing {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+%loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    background: transparent;
+    z-index: 9990;
+    text-align: center;
+    .loading-icon {
+        @include remCalc(border-radius, 10);
+        @include remCalc(width, 100);
+        @include remCalc(height, 100);
+        background: rgba(0, 0, 0, 0.8) url(../images/loading.gif) center no-repeat;
+        @include remCalc(background-size, 124);
+    }
+}
+
+.loading {
+    @extend %loading;
+    &.contain-text {
+        .loading-icon {
+            width: auto;
+            height: auto;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            @include remCalc(max-width, 200);
+            @include remCalc(min-height, 150);
+            @include remCalc(padding, 20, 20);
+            @include remCalc(background-position-y, 0);
+        }
+        .text {
+            @include fixPx(font-size, 24);
+            @include remCalc(margin, 90, auto, 10);
+            color: #fff;
+            text-align: center;
+        }
+    }
+}
+
+.sui-picker {
+    background-color: #fff;
+    > .bar:after,
+    > .bar:before {
+        background-color: transparent;
+    }
+    .picker-center-highlight:before,
+    .picker-center-highlight:after {
+        background: none;
+        border-bottom: 1px solid #999;
+        -webkit-transform-origin: 0 0 !important;
+        -ms-transform-origin: 0 0 !important;
+        -o-transform-origin: 0 0 !important;
+        transform-origin: 0 0 !important;
+    }
+    .picker-items {
+        width: 90%;
+        margin: auto;
+        .picker-item {
+            color: #999999;
+            @include fixPx(font-size, 28);
+        }
+        .picker-selected {
+            color: #333;
+            @include fixPx(font-size, 32);
+        }
+    }
+    .bar {
+        @include remCalc(padding, 0, 30);
+        background-color: $background;
+        .button-link {
+            @include fixPx(font-size, 28);
+            color: #333;
+        }
+    }
+}
+
+
+/* dropload */
+
+.dropload-up,
+.dropload-down {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.dropload-refresh,
+.dropload-update,
+.dropload-load {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    @include remCalc(height, 88);
+    @include remCalc(line-height, 88);
+    @include fixPx(font-size, 24);
+    color: #999999;
+    text-align: center;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    .loading-gif {
+        text-align: center;
+        display: inline-block;
+        @include remCalc(width, 50);
+        @include remCalc(height, 50);
+        background: url(../images/loading_small.gif) 0 0 no-repeat;
+        @include remCalc(background-size, 50, 50);
+        position: relative;
+        @include remCalc(top, 18);
+        @include remCalc(padding, 0, 10, 0, 0);
+    }
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.dropload-down.dropload-down-static {
+    height: auto;
+    overflow: auto;
+    .dropload-load {
+        position: relative;
+    }
+}
+
+.swipe-right-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+//end nav-left
+%scroll-view {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    -moz-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+%scroll-wrap {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    @extend %box-sizing;
+}
+
+// ::-webkit-scrollbar{
+//     width:0px;
+// }
+.scroll-view {
+    position: relative;
+    @extend %scroll-view;
+}
+
+.page-body {
+    @extend %scroll-wrap;
+    position: relative;
+}
+
+//弹性左右
+%flex-left-right-wrapper {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -ms-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    -moz-flex-direction: row;
+    flex-direction: row;
+}
+
+%flex-left-right-item {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+//一行文字超出隐藏
+%text-overflow {
+    overflow: hidden;
+    /*自动隐藏文字*/
+    text-overflow: ellipsis;
+    /*文字隐藏后添加省略号*/
+    white-space: nowrap;
+    /*强制不换行*/
+}
+
+//两行文字超出隐藏
+%text-overflow-2 {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.page {
+    background: $background;
+}
+
+.pull-to-refresh-layer .pull-to-refresh-arrow {
+    @include remCalc(width, 48);
+    @include remCalc(height, 48);
+    @include remCalc(margin-top, -24);
+    @include remCalc(margin-left, -24);
+    background: url("../images/add-more-down.png") center no-repeat;
+    @include remCalc(-webkit-background-size,
+    48,
+    48);
+    @include remCalc(background-size,
+    48,
+    48);
+}
+
+.pull-to-refresh-layer .preloader {
+    -webkit-animation: none;
+    -o-animation: none;
+    animation: none;
+}
+
+.pull-to-refresh-layer .preloader:after {
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url("../images/add-more.gif") center no-repeat;
+    background-position: 50%;
+    -webkit-background-size: 100% 100%;
+    background-size: 100%;
+}
+
+.pull-to-refresh-content {
+    margin-bottom: -2.2rem !important;
+    &.content {
+        position: relative !important;
+    }
+}
+
+//
+//.pull-to-refresh-layer {
+//  margin-top: -2.2rem !important;
+//}
+.infinite-scroll-preloader {
+    margin: 0;
+}
+
+.infinite-scroll-preloader .preloader {
+    width: 1rem;
+    height: 1rem;
+    line-height: 1;
+}
+
+.infinite-scroll-preloader.hidden {
+    visibility: hidden;
+    .preloader {
+        visibility: hidden !important;
+    }
+}
+
+%text-vertical-align-middle {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+}
+
+.mbsc-ios {
+    .dw-i {
+        text-align: center;
+    }
+    .dw-li {
+        padding: 0;
+    }
+}
+
+.common-toolbar {
+    position: relative;
+    background-color: #ffffff;
+    border-top: 1px solid $color-border;
+    @include remCalc(height,
+    98);
+    @extend %box-sizing;
+    .tab-item {
+        color: #999999;
+        .icon ~ .tab-label {
+            top: 0;
+            @include fixPx(font-size,
+            20);
+            @extend %text-overflow;
+            @include fixPx(min-width,
+            100);
+        }
+    }
+    .tab-item {
+        > .icon {
+            color: #999999;
+            @include iconFontSize(font-size,
+            50);
+        }
+        > [class$="_highlight"] {
+            display: none;
+        }
+    }
+    .tab-item.active {
+        font-weight: normal;
+        color: $color-blue !important;
+        > .icon {
+            color: $color-blue !important;
+            display: none;
+        }
+        > [class$="_highlight"] {
+            display: inline-block;
+        }
+    }
+}
+
+.common-toolbar.bar-tab:before {
+    height: 0 !important;
+}
+
+.btn-submit {
+    @include remCalc(margin,
+    60,
+    auto);
+}
+
+%flex {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+%flex-item {
+    -webkit-box-flex: 1;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;
+    /* OLD - Firefox 19- */
+    -webkit-flex: 1;
+    /* Chrome */
+    -ms-flex: 1;
+    /* IE 10 */
+    flex: 1;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+.icon-prompt_ico_refresh {
+    @include remCalc(font-size,
+    28);
+    color: #fff;
+}
+
+.mbsc-ios {
+    .dwb-s {
+        .dwb {
+            color: $color-orange !important;
+        }
+    }
+}
+
+.bg-white {
+    background: #fff;
+}
